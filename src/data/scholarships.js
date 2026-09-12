@@ -244,6 +244,14 @@ const scholarships = [
 
 export default scholarships
 
+// Static map for income ranges
+const incomeMap = {
+  'below-2.5': 2.5,
+  '2.5-6': 6,
+  '6-10': 10,
+  'above-10': 100,
+}
+
 /**
  * Matches scholarships against a student profile.
  * Returns an array of matched scholarship objects with computed compatibility info.
@@ -252,12 +260,6 @@ export function matchScholarships(profile) {
   const { country, degreeLevel, fieldOfStudy, category, incomeRange, existingScholarship, domicileState, academicScore, targetIntake } = profile
 
   // Parse income to a number (in lakhs)
-  const incomeMap = {
-    'below-2.5': 2.5,
-    '2.5-6': 6,
-    '6-10': 10,
-    'above-10': 100,
-  }
   const studentIncome = incomeMap[incomeRange] || 100
 
   // Normalize the existing scholarship input to try matching an ID
